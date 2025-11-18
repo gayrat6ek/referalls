@@ -28,7 +28,7 @@ async def show_referrals(message: Message):
 
 Konkursda ishtirok etish juda oson — pastdagi havola orqali kanalga o'ting 👇👇👇
 
-Shaxsiy havolangiz: <code>{referral_link}</code>"""
+Shaxsiy havolangiz: \n\n<code>{referral_link}</code>"""
     
     # Try to send banner image with text as caption
     banner_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "assets", "banner.jpg")
@@ -67,7 +67,7 @@ async def show_points(message: Message):
 
 Linkni yaqinlaringizga yuboring, guruhlarga ulashing — har bir qo‘shilgan odam sizni g‘oliblikka bir qadam yaqinlashtiradi! 🎁🚀
 
-Shaxsiy havolangiz: <code>{referral_link}</code>"""
+Shaxsiy havolangiz: \n\n<code>{referral_link}</code>"""
     )
     
     await message.answer(text, parse_mode="HTML")
@@ -93,8 +93,7 @@ Qanchalik ko'p odam taklif qilsangiz — sovg'a yutish imkoningiz shunchalik osh
 
 Faol bo'ling — sovg'alar sizni kutyapti! 🎉
 
-🔗 Sizning havolangiz:
-<code>{referral_link}</code>"""
+🔗 Sizning havolangiz: \n\n<code>{referral_link}</code>"""
     
     await message.answer(text, parse_mode="HTML")
 

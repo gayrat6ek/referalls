@@ -144,7 +144,7 @@ async def cmd_start(message: Message, state: FSMContext):
 
 Linkni yaqinlaringizga yuboring, guruhlarga ulashing — har bir qo‘shilgan odam sizni g‘oliblikka bir qadam yaqinlashtiradi! 🎁🚀
 
-Shaxsiy havolangiz: <code>{referral_link}</code>"""
+Shaxsiy havolangiz: \n\n<code>{referral_link}</code>"""
             
             
             await message.answer(
