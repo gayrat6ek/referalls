@@ -1,0 +1,8 @@
+# Telegram Bot Framework
+aiogram==3.13.1
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Python version requirement: Python 3.9+
+
