@@ -51,7 +51,7 @@ async def handle_contact(message: Message, state: FSMContext):
         "📑 Nechta odam qo'shilganini ko'rish uchun:\n"
         "👉 \"Mening ballarim\" tugmasini bosib tekshiring.\n\n"
         "Faol bo'ling — sovg'alar sizni kutyapti! 🎉\n\n"
-        f"🔗 Sizning havolangiz:\n\n<code>{referral_link}</code>"
+        f"🔗 Sizning havolangiz:\n\n{referral_link}"
     )
     
     await message.answer(

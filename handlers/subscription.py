@@ -63,7 +63,7 @@ async def check_subscription_callback(callback: CallbackQuery, state: FSMContext
         
         welcome_text = (
             f"✅ A'lo! Hamma narsa tayyor.\n\n"
-            f"🔗 Sizning referal havolangiz:\n<code>{referral_link}</code>\n\n"
+            f"🔗 Sizning referal havolangiz:\n{referral_link}\n\n"
             f"📊 Statistikangiz:\n"
             f"👥 Taklif qilganlar: {referral_count}\n"
             f"⭐ Ballar: {points}\n\n"
