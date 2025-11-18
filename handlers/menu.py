@@ -93,7 +93,7 @@ Qanchalik ko'p odam taklif qilsangiz — sovg'a yutish imkoningiz shunchalik osh
 
 Faol bo'ling — sovg'alar sizni kutyapti! 🎉
 
-🔗 Sizning havolangiz: \n\n<code>{referral_link}</code>"""
+🔗 Sizning havolangiz: \n\n{referral_link}"""
     
     await message.answer(text, parse_mode="HTML")
 
