@@ -280,6 +280,7 @@ class Database:
                     u.username,
                     u.first_name,
                     u.last_name,
+                    u.phone_number,
                     u.points,
                     COUNT(r.id) as referral_count
                 FROM users u

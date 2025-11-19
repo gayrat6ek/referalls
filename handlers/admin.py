@@ -69,11 +69,13 @@ async def cmd_stats(message: Message):
             user_id_ref = referrer.get('user_id', 'N/A')
             name = referrer.get('first_name', 'Noma\'lum')
             username = referrer.get('username', 'username yo\'q')
+            phone = referrer.get('phone_number', 'telefon yo\'q')
             ref_count = referrer.get('referral_count', 0)
             points = referrer.get('points', 0)
             
             stats_text += f"{idx}. {name} (@{username})\n"
             stats_text += f"   User ID: {user_id_ref}\n"
+            stats_text += f"   📱 Telefon: {phone}\n"
             stats_text += f"   👥 Takliflar: {ref_count}\n"
             stats_text += f"   ⭐ Ballar: {points}\n"
             stats_text += "-" * 50 + "\n"
