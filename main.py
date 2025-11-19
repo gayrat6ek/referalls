@@ -11,7 +11,7 @@ from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 
 from config import config
-from handlers import start, subscription, contact, menu
+from handlers import start, subscription, contact, menu, admin
 
 # Configure logging
 logging.basicConfig(
@@ -45,6 +45,7 @@ async def main():
     dp = Dispatcher(storage=MemoryStorage())
     
     # Register routers
+    dp.include_router(admin.router)  # Admin router first for priority
     dp.include_router(start.router)
     dp.include_router(subscription.router)
     dp.include_router(contact.router)

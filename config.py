@@ -26,6 +26,9 @@ class Config:
         # Bot username (without @)
         self.BOT_USERNAME: str = os.getenv("BOT_USERNAME", "your_bot_username")
         
+        # Admin user ID (Telegram ID of admin who can use /stats)
+        self.ADMIN_USER_ID: int = int(os.getenv("ADMIN_USER_ID", "0"))
+        
         # Points per referral
         self.POINTS_PER_REFERRAL: int = 1
 

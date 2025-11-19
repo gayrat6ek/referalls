@@ -207,6 +207,96 @@ class Database:
         except Exception as e:
             logger.error(f"Error getting referral count: {e}")
             return 0
+    
+    def get_total_users(self) -> int:
+        """Get total number of users"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute("SELECT COUNT(*) as count FROM users")
+            result = cursor.fetchone()
+            conn.close()
+            
+            return result['count'] if result else 0
+        except Exception as e:
+            logger.error(f"Error getting total users: {e}")
+            return 0
+    
+    def get_total_referrals(self) -> int:
+        """Get total number of referrals"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute("SELECT COUNT(*) as count FROM referrals")
+            result = cursor.fetchone()
+            conn.close()
+            
+            return result['count'] if result else 0
+        except Exception as e:
+            logger.error(f"Error getting total referrals: {e}")
+            return 0
+    
+    def get_subscribed_users_count(self) -> int:
+        """Get count of subscribed users"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute("SELECT COUNT(*) as count FROM users WHERE is_subscribed = 1")
+            result = cursor.fetchone()
+            conn.close()
+            
+            return result['count'] if result else 0
+        except Exception as e:
+            logger.error(f"Error getting subscribed users count: {e}")
+            return 0
+    
+    def get_users_with_phone_count(self) -> int:
+        """Get count of users who shared phone number"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute("SELECT COUNT(*) as count FROM users WHERE phone_number IS NOT NULL")
+            result = cursor.fetchone()
+            conn.close()
+            
+            return result['count'] if result else 0
+        except Exception as e:
+            logger.error(f"Error getting users with phone count: {e}")
+            return 0
+    
+    def get_top_referrers(self, limit: int = 10) -> List[dict]:
+        """Get top referrers by referral count"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute("""
+                SELECT 
+                    u.user_id,
+                    u.username,
+                    u.first_name,
+                    u.last_name,
+                    u.points,
+                    COUNT(r.id) as referral_count
+                FROM users u
+                LEFT JOIN referrals r ON u.user_id = r.referrer_id
+                GROUP BY u.user_id
+                HAVING referral_count > 0
+                ORDER BY referral_count DESC
+                LIMIT ?
+            """, (limit,))
+            
+            rows = cursor.fetchall()
+            conn.close()
+            
+            return [dict(row) for row in rows]
+        except Exception as e:
+            logger.error(f"Error getting top referrers: {e}")
+            return []
 
 
 # Create database instance
