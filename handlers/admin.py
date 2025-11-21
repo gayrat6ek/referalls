@@ -5,6 +5,7 @@ from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, BufferedInputFile
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import io
 
 from database import db
@@ -82,19 +83,22 @@ async def cmd_stats(message: Message):
     else:
         stats_text += "Hozircha referallar yo'q.\n\n"
     
+    # Get current time in Uzbekistan timezone
+    uz_time = datetime.now(ZoneInfo("Asia/Tashkent"))
+    
     stats_text += "\n" + "=" * 50 + "\n"
-    stats_text += f"🕐 Yaratilgan vaqt: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+    stats_text += f"🕐 Yaratilgan vaqt: {uz_time.strftime('%Y-%m-%d %H:%M:%S')} (UZT)\n"
     stats_text += "=" * 50 + "\n"
     
     # Create file in memory
     file_content = stats_text.encode('utf-8')
-    file_name = f"bot_stats_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+    file_name = f"bot_stats_{uz_time.strftime('%Y%m%d_%H%M%S')}.txt"
     
     # Send as document
     document = BufferedInputFile(file_content, filename=file_name)
     await message.answer_document(
         document=document,
-        caption=f"📊 Bot statistikasi\n🕐 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        caption=f"📊 Bot statistikasi\n🕐 {uz_time.strftime('%Y-%m-%d %H:%M:%S')} (UZT)"
     )
     
     logger.info(f"Stats file sent to admin {user_id}")
