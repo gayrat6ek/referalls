@@ -130,7 +130,7 @@ async def broadcast_houses_announcement():
     
     # Get all users
     user_ids = get_all_users()
-    
+
     if not user_ids:
         logger.warning("No users found in database")
         await bot.session.close()
